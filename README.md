@@ -2,7 +2,6 @@
 
 This project implements a **stateful AI agent** designed to assist in managing and scaling community onboarding. The agent can answer questions using **RAG (Retrieval-Augmented Generation)**, **evaluate new applications** using LLM-based scoring, and provide an interactive chat interface via **Gradio** — all built and tested in a **Kaggle notebook environment**.
 
-I started this project after completing a 5 days intensive GenAI course: [Course link](https://blog.google/technology/developers/google-kaggle-genai-intensive/)
 
 ## !\[Global Architecture](./ai-assistant.png)
 
