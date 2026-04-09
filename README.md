@@ -124,5 +124,5 @@ Fork this project or run the notebook on Kaggle to:
 
 ## 🙌 Credits
 
-Built by Sarthak Mohanty — feel free to reach out or connect on [LinkedIn](https://www.linkedin.com/in/riad-bensalem-429799127/).
+Built by Sarthak Mohanty — feel free to reach out or connect on [LinkedIn](www.linkedin.com/in/mohantysarthak98).
 
