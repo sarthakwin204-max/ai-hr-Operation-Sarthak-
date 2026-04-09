@@ -1,9 +1,8 @@
-# ai-hr-onboarding-assistant-Sarthak-
-An AI-powered HR onboarding assistant that automates document verification, candidate interaction, and HR policy queries using Generative AI (RAG) and AI agents. The system verifies documents like PAN, Aadhaar, and UAN, performs sentiment analysis, and enables intelligent search using vector databases.
-
 # 🤖 AI Onboarding Assistant for Communities
 
 This project implements a **stateful AI agent** designed to assist in managing and scaling community onboarding. The agent can answer questions using **RAG (Retrieval-Augmented Generation)**, **evaluate new applications** using LLM-based scoring, and provide an interactive chat interface via **Gradio** — all built and tested in a **Kaggle notebook environment**.
+
+I started this project after completing a 5 days intensive GenAI course: [Course link](https://blog.google/technology/developers/google-kaggle-genai-intensive/)
 
 ## !\[Global Architecture](./ai-assistant.png)
 
@@ -126,5 +125,5 @@ Fork this project or run the notebook on Kaggle to:
 
 ## 🙌 Credits
 
-Built by Sarthak Mohanty — feel free to reach out or connect on [LinkedIn](www.linkedin.com/in/mohantysarthak98).
+Built by Sarthak Mohanty — feel free to reach out or connect on [LinkedIn](https://www.linkedin.com/in/riad-bensalem-429799127/).
 
