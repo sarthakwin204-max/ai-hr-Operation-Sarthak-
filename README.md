@@ -1,4 +1,4 @@
-AI Community Onboarding Assistant
+AI Community Operation Guide
 
 This project is an AI-based assistant designed to make the community onboarding process easier and more efficient.
 
