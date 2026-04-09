@@ -1,128 +1,134 @@
-# 🤖 AI Onboarding Assistant for Communities
+AI Community Onboarding Assistant
 
-This project implements a **stateful AI agent** designed to assist in managing and scaling community onboarding. The agent can answer questions using **RAG (Retrieval-Augmented Generation)**, **evaluate new applications** using LLM-based scoring, and provide an interactive chat interface via **Gradio** — all built and tested in a **Kaggle notebook environment**.
+This project is an AI-based assistant designed to make the community onboarding process easier and more efficient.
 
+The system can:
 
-## !\[Global Architecture](./ai-assistant.png)
+Answer user questions using Retrieval-Augmented Generation (RAG)
+Evaluate new member applications using AI scoring
+Provide an interactive chat interface using Gradio
 
-## 🧠 What This Agent Does
+All parts of this project are built and tested in a Kaggle notebook environment.
 
-* ✅ **Answers Community Questions**  
-Uses a vector database (ChromaDB) and semantic search to retrieve relevant information from internal documentation (PDFs), powered by Gemini embeddings and LangChain’s RAG integration.
-* 📝 **Scores New Member Applications**  
-Takes answers from a Google Form stored in a Google Sheet, and evaluates each application based on predefined criteria using Gemini LLM scoring with structured output (JSON schema).
-* 🔍 **Tool-Using Agent Architecture**  
-Built using [LangGraph](https://docs.langgraph.dev/) to define the agent as a state machine with tools and routing logic.
-* 💬 **Gradio Chat Interface**  
-Provides a styled, interactive chat experience where users can ask questions, invoke tools implicitly, and view agent logs and scoring results in real-time.
+What This System Does
 
-\---
+Smart Question Answering
+The assistant uses ChromaDB to search and retrieve relevant information from internal PDF documents. It uses Gemini embeddings and LangChain to generate accurate answers.
 
-## 🧱 Technologies Used
+Application Evaluation
+The system reads responses from Google Forms stored in Google Sheets. It evaluates each application using an AI model and provides:
 
-|Component|Description|
-|-|-|
-|**LangGraph**|Defines the AI agent as a graph of nodes (chat, tool handling, scoring).|
-|**LangChain + Gemini**|LLM interface for chat and scoring tasks (via `ChatGoogleGenerativeAI`).|
-|**ChromaDB**|Vector store to enable fast semantic search for RAG.|
-|**Python requests**|Pulls new applications submitted through a Google Form by reading a public spreadsheet|
-|**Gradio**|Provides a fully interactive frontend in the notebook.|
-|**PyMuPDF \& `unstructured`**|Used for chunking and extracting content from community PDF files.|
+A score
+A final decision (approve, review, reject)
+A clear explanation
 
-\---
+Agent-Based Design
+The system is built using LangGraph. It works like a state machine that can decide whether to answer directly or use tools like RAG or scoring.
 
-## 🔄 How It Works
+Interactive Chat Interface
+A user-friendly chat interface is created using Gradio. Users can ask questions, trigger tools automatically, and view responses in real time.
 
-### 1\. RAG (Retrieval-Augmented Generation)
+Technologies Used
 
-* PDFs about the community (mission, goals, values, policies) are processed into semantic chunks using three strategies:
+LangGraph
+Used to define the workflow and decision-making logic of the AI agent
 
-  * Fixed-size + overlap
-  * One chunk per document
-  * Semantic chunking via `unstructured`
-* Chunks are embedded using Gemini’s `text-embedding-004` model and stored in ChromaDB.
-* `get\_info(query: str)` is a tool that performs semantic search and returns a formatted markdown snippet.
+LangChain and Gemini
+Used for handling AI conversations and application evaluation
 
-### 2\. Application Scoring
+ChromaDB
+Used as a vector database for semantic search
 
-* The `score\_application()` and `check\_new\_applications()` tools allow the agent to:
+Python Requests
+Used to fetch data from Google Sheets
 
-  * Evaluate individual or batch applications.
-  * Parse responses into a JSON schema with score, verdict (`approve`, `review`, `reject`), and detailed reasoning.
-  * Save the evaluations to a CSV and display results in a styled table.
+Gradio
+Used to build the interactive user interface
 
-### 3\. Agent Logic with LangGraph
+PyMuPDF and Unstructured
+Used to extract and process content from PDF files
 
-* Nodes:
+How the System Works
 
-  * `chatbot`: LLM chat interaction
-  * `score\_node`: Handles structured scoring
-  * `tools`: Automatically resolves tool calls
-  * `human`: Manages user input from Gradio
-* Routing:
+RAG (Retrieval-Augmented Generation)
+PDF documents related to the community are divided into smaller parts using different methods:
 
-  * Routes messages from chatbot to tools if tool calls are present
-  * Routes back to chat node after tool execution
-  * Ends when user types “q” or “quit”
+Fixed-size chunking with overlap
+One chunk per document
+Semantic chunking using unstructured
 
-\---
+These chunks are converted into embeddings using Gemini and stored in ChromaDB.
+The tool get_info(query) retrieves relevant information based on user queries.
 
-## 💻 Running in Kaggle Notebook
+Application Scoring
+The system uses two main tools:
 
-All components (agent logic, UI, RAG setup, and evaluation) are implemented in a Kaggle Notebook. The notebook includes:
+score_application()
+check_new_applications()
 
-* Inline markdown explanations
-* Tool-calling logic
-* Cell-level breakdown for easy learning
-* Integration with Google Sheets via API key
+These tools:
 
-You can duplicate the notebook and run everything end-to-end without extra setup.
+Evaluate single or multiple applications
+Generate structured results with score and reasoning
+Save results in a CSV file
+Display results in a readable format
 
-\---
+Agent Workflow
+Main components:
 
-## 🧪 Example Prompts
+chatbot for conversation
+tools for executing tasks
+score_node for evaluation
+human for user input
 
-* “What is the mission of this community?”
-* “Can you check and score new applications?”
-* “How can I contribute as a new member?”
-* “Can you score this application: ...”
+Flow:
+User input goes to chatbot
+If a tool is needed, it is executed
+The result is returned to the chatbot
+The process stops when the user types quit or q
 
-\---
+Running the Project
 
-## 📦 Folder Structure
+The entire system runs inside a Kaggle notebook. It includes:
 
-```
+Step-by-step explanation
+AI agent logic
+RAG setup
+Interactive interface
+
+You can copy the notebook and run it directly without complex setup.
+
+Example Questions
+
+What is the mission of this community
+Can you check and score new applications
+How can I contribute
+Can you evaluate this application
+
+Project Structure
+
 .
-├── ai-agent-community-assistant.ipynb   # Main development notebook
-├── community-docs/                          # Directory with PDF docs
-├── scored\_applications.csv                  # Output file with scored apps
-└── README.md                                # This file
-```
+ai-agent-community-assistant.ipynb Main notebook
+community-docs/ PDF files
+scored_applications.csv Output results
+README.md Documentation
 
-\---
+Project Results
 
-## ✅ Results
+Built a complete AI-based onboarding assistant
+Learned how to use RAG, embeddings, and vector databases
+Gained experience in prompt engineering and agent workflows
+Created a working interactive AI application
 
-* Built and deployed a fully functional GenAI agent from scratch.
-* Solidified understanding of agents, embeddings, RAG, and prompt engineering.
-* Learned LangGraph by implementing custom nodes and conditional routing.
-* Wrapped everything into an interactive, usable UI using Gradio.
+Future Improvements
 
-\---
+Add more tools and features
+Improve application scoring criteria
+Enhance user interface with more options
+Add feedback system for better learning
 
-\---
+Author
 
-## ✨ Try It or Extend It
-
-Fork this project or run the notebook on Kaggle to:
-
-* Add more tools or community documents
-* Score applicants using different criteria
-* Extend the UI with buttons, file uploads, or user feedback
-
-\---
-
-## 🙌 Credits
-
-Built by Sarthak Mohanty — feel free to reach out or connect on [LinkedIn](www.linkedin.com/in/mohantysarthak98).
-
+Sarthak Mohanty
+LinkedIn
+www.linkedin.com/in/mohantysarthak98
