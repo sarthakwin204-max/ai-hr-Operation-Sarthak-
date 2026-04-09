@@ -1,6 +1,6 @@
 AI Community Operation Guide
 
-This project is an AI-based assistant designed to make the community onboarding process easier and more efficient.
+This project is an AI-based HR operations agent that assists employees during the joining process and also supports recruitment by verifying documents.
 
 The system can:
 
